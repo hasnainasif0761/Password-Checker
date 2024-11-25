@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Password Manager</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		*
+{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: Arial, Helvetica, sans-serif;
+}
+body
+{
+    background: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#Password
+{
+    width: 350px;
+    padding: 12px;
+    font-size: 1.5rem;
+    background: antiquewhite;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+#Password:focus
+{
+    outline: none;
+}
+	</style>
+</head>
+<body>
+    <div class="container">
+         <div class="input">
+         	<input type="text" id="Password" placeholder="Enter Your Password">
+         </div>
+    	<div class="output">
+    		<span id="output"></span>
+    	</div>
+    </div>
+	<script>
+		const inputfield = document.querySelector('#Password');
+		const outputfield = document.querySelector('#output');
+
+        inputfield.addEventListener('input', ()=>{
+            console.log(inputfield.value)
+
+            let password = inputfield.value;
+            if(password.length < 8){
+                outputfield.innerText = 'Password is too short';
+                outputfield.style = "color:red"
+            }else
+            {
+                outputfield.innerHTML = "Password is too long"
+                outputfield.style = "color:green"
+            }
+            if(password.search(/[a-z]/) == -1){
+                outputfield.innerHTML = "Password is missing a lower case";
+                outputfield.style = "color:red"
+            }else if(password.search(/[A-Z]/) == -1){
+               outputfield.innerHTML = "Password is missing a Upper case";
+                outputfield.style = "color:red"
+            }else if(password.search(/[0-9]/) == -1){
+               outputfield.innerHTML = "Password is missing a Number";
+                outputfield.style = "color:red"
+            }else if(password.search(/[~\`\!\ @\#\$\%\^\&\*\(\)\-\_\+\=\{\}\[\]\|\ \;\:"<>,.?]/) == -1){
+               outputfield.innerHTML = "Password is missing a Speacial Character";
+                outputfield.style = "color:red"
+            }
+            else
+            {
+            outputfield.innerHTML = "Password is Strong";
+            outputfield.style = "color:green"
+            }
+        })
+	</script>
+</body>
+</html>
